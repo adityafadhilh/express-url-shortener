@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.DATABASE_URL)
- .then(() => {
+    .then(() => {
         console.log('Connected DB!');
+    }).catch((err) => {
+        console.log('Failed to connect DB!');
+        console.log(err);
     });
 
 mongoose.Promise = global.Promise;

@@ -11,7 +11,9 @@ const urlShortener = async (url) => {
     let unique = false;
     let shortenUrl = '';
 
-    while (!unique) {
+    let limitIteration = 100;
+
+    while (!unique && limitIteration > 0) {
         let tempShortenUrl ='';
         let tempNumber = bigIntStr;
         while(tempNumber % 62n !== 0n) {
@@ -26,6 +28,7 @@ const urlShortener = async (url) => {
             unique = true;
             shortenUrl = tempShortenUrl;
         }
+        limitIteration--;
     }
     console.log(shortenUrl);
     console.log(bigIntStr);
