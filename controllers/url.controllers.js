@@ -50,7 +50,7 @@ const createShortenUrl = async (req, res) => {
         const shortenUrl = await urlShortener(url);
         const result = await urlServices.create(url, shortenUrl);
         return res.json({
-            data: result
+            ...result
         });
     } catch (error) {
         console.log('error');
