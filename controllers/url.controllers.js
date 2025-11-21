@@ -23,7 +23,16 @@ const getUrl = async (req, res) => {
         const { shortenUrl } = req.params;
         const data = await userServices.findByUrl(shortenUrl);
         console.log(data);
-        return res.redirect('http://' + data.realUrl);
+        let resUrl;
+        if (!data.realUrl.startsWith('http://') && !data.realUrl.startsWith('https://')) {
+            console.log('Not Starts With http or https');
+            resUrl = 'https://' + data.realUrl;
+        } else {
+            console.log(data.realUrl);
+            resUrl = data.realUrl;
+        }
+        console.log(resUrl);
+        return res.redirect(resUrl);
     } catch (error) {
         console.log('error');
         console.log(error);
